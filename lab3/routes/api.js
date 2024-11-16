@@ -123,7 +123,7 @@ router.get("/get-list-fruit-have-name-a-or-x", async (req, res) => {
   // id param
   try {
     const query = {
-      $for: [{ name: { $regex: "T" } }, { name: { $regex: "X" } }],
+      $or: [{ name: { $regex: "T" } }, { name: { $regex: "X" } }],
     };
     // truyền câu điều kiện, và chỉ lấy các trường mong muốn
     const data = await Fruits.find(
@@ -189,7 +189,7 @@ router.delete("/destroy-fruit-by-id/:id", async (req, res) => {
       res.json({
         status: 200,
         messenger: "Xóa thành công",
-        data: "result",
+        data: result,
       });
     } else {
       res.json({
